@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Outputs the configured domain name
+echo "my-domain.tech"

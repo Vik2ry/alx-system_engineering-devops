@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Configures Nginx to redirect /redirect_me to another page
+
+# Create redirect configuration
+redirect_config="server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+    
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+    
+    location / {
+        root /var/www/html;
+        index index.html index.htm;
+    }
+}"
+
+# Write configuration
+echo "$redirect_config" > /etc/nginx/sites-available/default
+
+# Test configuration and restart Nginx
+nginx -t
+service nginx restart
